@@ -1,33 +1,75 @@
-# Mujadid Majeed — Full-Stack Developer & AI Engineer
+# 🚀 Mujadid Majeed - Full Stack Web & App Developer
 
-A modern portfolio website showcasing full-stack development expertise in Python/Django, React, and AI/ML systems. Built with React, TypeScript, Tailwind CSS, and Vite.
+A modern, animated personal portfolio showcasing Full Stack development expertise with AI/ML capabilities.
 
-## Features
+**Live Demo:** https://mujadid-majeed.vercel.app
 
-- **Responsive Design** - Mobile-first approach with Tailwind CSS
-- **Smooth Animations** - Framer Motion for engaging interactions
-- **Modern UI Components** - Shadcn/ui component library
-- **Fast Build** - Vite for optimal development and build performance
+## ✨ Features
 
-## Getting Started
+- **Animated Hero Section** - Typewriter effect with active cursor animation
+- **Project Showcase** - Detailed project galleries with video support
+- **Responsive Design** - Mobile-first approach using Tailwind CSS
+- **Tech Stack Highlighting** - Python, Django, React, AI/ML
+- **Voice Integration** - Auto-plays introduction using Web Speech API
+- **Smooth Animations** - Framer Motion for all transitions
+- **Accessibility** - WCAG compliant with proper semantic HTML
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React 18, TypeScript, Tailwind CSS
+- **Animation:** Framer Motion
+- **Build Tool:** Vite
+- **Icons:** Lucide React
+- **Deployment:** Vercel
+- **UI Components:** shadcn/ui
+
+## 📦 Installation
 
 ```bash
 # Install dependencies
-bun install
+npm install
 
-# Start development server
-bun run dev
+# Development server
+npm run dev
 
 # Build for production
-bun run build
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-## Tech Stack
+## 📁 Project Structure
 
-- React 18
-- TypeScript
-- Tailwind CSS
-- Vite
-- Framer Motion
-- Shadcn/ui
+```
+src/
+├── components/       # React components
+│   ├── HeroSection.tsx
+│   ├── ProjectDetail.tsx
+│   ├── ProjectsSection.tsx
+│   └── ui/          # UI component library
+├── pages/           # Page components
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions
+└── data/            # Project data & constants
 
+public/
+└── portfolio/       # Project images and videos
+```
+
+## 🚀 Deployment
+
+Deployed on Vercel with automatic CI/CD from Git.
+
+```bash
+# Deploy to Vercel
+vercel --prod
+```
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 👨‍💻 About
+
+Full Stack developer specializing in Web & App development with a passion for AI/ML technologies.
