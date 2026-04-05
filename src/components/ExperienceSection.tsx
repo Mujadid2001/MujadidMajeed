@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, Zap, Shield, Rocket } from "lucide-react";
+import FloatingParticles from "./FloatingParticles";
+import RevealText from "./RevealText";
 
 const highlights = [
   {
@@ -22,13 +24,16 @@ const highlights = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="relative py-32">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="relative py-32 overflow-hidden">
+      {/* Floating Particles - Reduced for performance */}
+      <FloatingParticles count={10} color="primary" opacity={0.08} />
+      
+      <div className="container mx-auto px-6 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center w-full relative z-10"
         >
           <span className="font-mono text-xs text-secondary text-glow-amber tracking-widest uppercase">
             // Career
@@ -42,22 +47,31 @@ const ExperienceSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card rounded-xl p-8 md:p-10 glow-cyan max-w-4xl"
+          whileHover={{ boxShadow: "0 0 60px hsl(187 100% 45% / 0.25)" }}
+          className="glass-card rounded-xl p-8 md:p-10 glow-cyan max-w-4xl transition-all duration-500 relative z-10"
         >
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <motion.div 
+            className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-6 border-b border-border/50"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
             <div>
               <h3 className="font-mono text-xl font-bold text-foreground">
                 Freelance Software Developer
               </h3>
               <p className="text-muted-foreground text-sm mt-1">Self-Employed · Remote</p>
             </div>
-            <span className="font-mono text-xs text-primary mt-2 md:mt-0 border border-primary/30 px-3 py-1 rounded-full">
+            <motion.span 
+              className="font-mono text-xs text-primary mt-4 md:mt-0 border border-primary/30 px-3 py-1 rounded-full"
+              animate={{ boxShadow: ["0 0 10px hsl(187 100% 45% / 0)", "0 0 20px hsl(187 100% 45% / 0.3)", "0 0 10px hsl(187 100% 45% / 0)"] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
               March 2023 — Present
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
 
-          {/* Highlights */}
+          {/* Highlights with staggered animation */}
           <div className="space-y-6">
             {highlights.map(({ icon: Icon, text }, i) => (
               <motion.div
@@ -66,15 +80,31 @@ const ExperienceSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="flex gap-4 items-start"
+                whileHover={{ x: 8, color: "hsl(187 100% 45%)" }}
+                className="flex gap-4 items-start cursor-pointer transition-colors"
               >
-                <div className="mt-1 p-2 rounded-lg bg-muted">
+                <motion.div 
+                  className="mt-1 p-2 rounded-lg bg-muted shrink-0"
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                >
                   <Icon size={16} className="text-primary" />
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{text}</p>
+                </motion.div>
+                <p className="text-muted-foreground text-sm leading-relaxed pt-1">
+                  {text}
+                </p>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom accent line animation */}
+          <motion.div
+            className="mt-8 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
         </motion.div>
       </div>
     </section>

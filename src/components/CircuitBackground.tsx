@@ -11,7 +11,8 @@ const CircuitBackground = () => {
 
     let animationId: number;
     const nodes: { x: number; y: number; vx: number; vy: number; size: number }[] = [];
-    const nodeCount = 60;
+    const nodeCount = 35;
+    const connectionDistanceSq = 50000; // 223px² (was 200px, slightly expanded with squared comparison)
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -38,8 +39,8 @@ const CircuitBackground = () => {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 200) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < connectionDistanceSq) {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             // Circuit-style: horizontal then vertical lines
@@ -50,7 +51,8 @@ const CircuitBackground = () => {
               ctx.lineTo(nodes[i].x, nodes[j].y);
               ctx.lineTo(nodes[j].x, nodes[j].y);
             }
-            const alpha = (1 - dist / 200) * 0.08;
+            const dist = Math.sqrt(distSq);
+            const alpha = (1 - dist / 223) * 0.08;
             ctx.strokeStyle = `hsla(187, 100%, 45%, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
